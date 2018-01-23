@@ -12,7 +12,7 @@ import com.example.ljn.kotlinproject.mvp.IView
 import javax.inject.Inject
 
 /**
-@ description:  再看 再看 再看就把你喝掉
+@ description:  再看 再看 再看就把你喝掉  有点小坑 不大
 @ author:  ljn
 @ time:  2018/1/12
  */

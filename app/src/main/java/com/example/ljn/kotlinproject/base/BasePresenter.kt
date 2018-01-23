@@ -7,7 +7,7 @@ import io.reactivex.disposables.Disposable
 
 abstract class BasePresenter<T : IView> : IPresenter<T> {
 
-    private var mCompositeDisposable: CompositeDisposable? = null
+    private var mCompositeDisposable: CompositeDisposable = CompositeDisposable()
     var mView: T? = null
         private set
 
@@ -21,14 +21,13 @@ abstract class BasePresenter<T : IView> : IPresenter<T> {
     }
 
     private fun unSubscribe() {
-        if (!mCompositeDisposable?.isDisposed!!) {
-            mCompositeDisposable!!.clear()
+        if (!mCompositeDisposable.isDisposed) {
+            mCompositeDisposable.clear()
         }
 
     }
 
     protected fun addSubscribe(disposable: Disposable) {
-        mCompositeDisposable ?: let { mCompositeDisposable = CompositeDisposable() }
-        mCompositeDisposable?.add(disposable)
+        mCompositeDisposable.add(disposable)
     }
 }
