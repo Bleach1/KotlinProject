@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.example.ljn.kotlinproject"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kapt {
+        generateStubs = true
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.7'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.squareup.okhttp3:okhttp:3.9.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    compile 'com.github.bumptech.glide:glide:4.4.0'
+    compile 'com.github.bumptech.glide:okhttp3-integration:4.3.1@aar'
+    compile 'com.google.dagger:dagger:2.11'
+    kapt 'com.google.dagger:dagger-compiler:2.11'
+    compile 'com.android.support:multidex:1.0.2'
+    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    compile('com.github.VictorAlbertos.RxCache:runtime:1.8.0-2.x') {
+        exclude module: 'rxjava'
+        exclude module: 'dagger'
+    }
+    compile 'com.github.VictorAlbertos.Jolyglot:gson:0.0.3'
+    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    compile 'com.safframework.log:saf-log:1.0.5'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
+    compile 'top.zibin:Luban:1.1.2'
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+    compile 'jp.wasabeef:glide-transformations:3.0.1'
+    compile 'org.greenrobot:eventbus:3.1.1'
+    compile 'com.tencent.bugly:crashreport:2.6.6.1'
+}
