@@ -2,9 +2,9 @@ package com.example.ljn.kotlinproject.utils
 
 class ExceptionUtil(message: String?) : RuntimeException(message) {
     companion object {
-        private val ERROR_TOKEN = 10
-        private val ERROR_NETWORK = ERROR_TOKEN + 1
-        private val ERROR_SERVER = ERROR_NETWORK + 1
+        private const val ERROR_TOKEN = 10
+        private const val ERROR_NETWORK = ERROR_TOKEN + 1
+        private const val ERROR_SERVER = ERROR_NETWORK + 1
     }
 
     private fun getErrorMsg(code: Int): String {

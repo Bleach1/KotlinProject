@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="session_start" type="id">text</item>
+    <item name="session_details" type="id">details</item>
+    <item name="session_title" type="id">title</item>
+</resources>

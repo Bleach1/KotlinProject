@@ -8,7 +8,7 @@ object Config {
     val DB_NAME = "myRealm.realm"
     val HOST = "http://www.baidu.com"
 
-    private val PATH_DATA = App.instance?.cacheDir?.absolutePath + File.separator + "data"
+    private val PATH_DATA = App.instance.cacheDir?.absolutePath + File.separator + "data"
     val PATH_CACHE = PATH_DATA + "/NetCache"
 
     val TAG = "ljn"

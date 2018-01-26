@@ -1,6 +1,5 @@
 package com.example.ljn.kotlinproject
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.support.multidex.MultiDexApplication
@@ -10,6 +9,7 @@ import com.example.ljn.kotlinproject.injection.module.AppModule
 import com.example.ljn.kotlinproject.injection.module.HttpModule
 import com.example.ljn.kotlinproject.service.InitializeService
 import java.util.*
+import kotlin.properties.Delegates
 
 class App : MultiDexApplication() {
 
@@ -22,14 +22,14 @@ class App : MultiDexApplication() {
     }
 
     companion object {
-        @SuppressLint("StaticFieldLeak")
-        var context: Context? = null
-        @SuppressLint("StaticFieldLeak")
-        var instance: App? = null
+        var context: Context by Delegates.notNull()
+            private set
+        var instance: App by Delegates.notNull()
+            private set
 
         fun getAppComponent(): AppComponent {
             return DaggerAppComponent.builder()
-                    .appModule(AppModule(instance as App))
+                    .appModule(AppModule(instance))
                     .httpModule(HttpModule())
                     .build()
         }

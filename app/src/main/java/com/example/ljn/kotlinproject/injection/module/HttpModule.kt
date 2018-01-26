@@ -95,21 +95,21 @@ class HttpModule {
                     val bodyBuilder = FormBody.Builder()
                     var formBody = request.body() as FormBody
                     //把原来的参数添加到新的构造器，（因为没找到直接添加，所以就new新的）
-                    for (i in 0..formBody.size() - 1) {
+                    for (i in 0 until formBody.size()) {
                         bodyBuilder.addEncoded(formBody.encodedName(i), formBody.encodedValue(i))
                         //拿到请求的参数
                         L.i(formBody.name(i) + formBody.value(i))
-                        params.put(formBody.encodedName(i), formBody.encodedValue(i))
+                        params[formBody.encodedName(i)] = formBody.encodedValue(i)
                     }
                     if (!params.containsKey("v")) {
-                        params.put("v", "1.0")
+                        params["v"] = "1.0"
                         bodyBuilder.addEncoded("v", "1.0")
                     }
-                    params.put("appKey", "1")
-                    params.put("method", "imei")
-                    params.put("format", "VersionName")
-                    params.put("timestamp", System.currentTimeMillis().toString())
-                    params.put("deviceId", "imei")
+                    params["appKey"] = "1"
+                    params["method"] = "imei"
+                    params["format"] = "VersionName"
+                    params["timestamp"] = System.currentTimeMillis().toString()
+                    params["deviceId"] = "imei"
 
                     formBody = bodyBuilder
                             .addEncoded("appKey", "1")
@@ -176,7 +176,7 @@ class HttpModule {
     @Provides
     internal fun provideRxCache(): CacheProviders {
         return RxCache.Builder()
-                .persistence(App.instance?.filesDir, GsonSpeaker())
+                .persistence(App.instance.filesDir, GsonSpeaker())
                 .using(CacheProviders::class.java)
     }
 

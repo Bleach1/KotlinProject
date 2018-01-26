@@ -16,7 +16,7 @@ import javax.inject.Inject
 class DownloadApkUtil @Inject constructor(context: Context) {
 
     companion object {
-        val packageName = "com.android.providers.downloads"
+        const val packageName = "com.android.providers.downloads"
     }
 
     private var mDownloadManager: DownloadManager? = null

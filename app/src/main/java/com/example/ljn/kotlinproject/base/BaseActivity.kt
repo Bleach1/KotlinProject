@@ -29,14 +29,14 @@ abstract class BaseActivity<in V : IView, T : IPresenter<V>> : AppCompatActivity
         mContext = this
         initInject()
         mPresenter?.attachView(this as V)
-        App.instance?.addActivity(this)
+        App.instance.addActivity(this)
         initEventAndData()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         mPresenter?.detachView()
-        App.instance?.removeActivity(this)
+        App.instance.removeActivity(this)
     }
 
     protected abstract fun initInject()
