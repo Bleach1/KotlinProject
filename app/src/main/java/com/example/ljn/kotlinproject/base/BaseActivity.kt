@@ -22,7 +22,7 @@ abstract class BaseActivity<in V : IView, T : IPresenter<V>> : AppCompatActivity
     @JvmField
     @Inject
     protected var mPresenter: T? = null
-    private lateinit var mContext: Activity
+    private lateinit var mContext: Activity//need to init  use lateInit
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayout())
