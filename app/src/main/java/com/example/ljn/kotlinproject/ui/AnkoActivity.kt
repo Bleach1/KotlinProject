@@ -37,7 +37,6 @@ class AnkoActivity : AppCompatActivity() {
         setContentView(R.layout.anko_activity)
         val intExtra = intent.getIntExtra("id", 0)
         L.i(intExtra.toString())
-
         recycler.layoutManager = LinearLayoutManager(this)
         val data: MutableList<TestBean> = ArrayList(20)
         val bean = TestBean("NullPointerException", "鎏金安娜", 26)
@@ -61,6 +60,7 @@ class AnkoActivity : AppCompatActivity() {
     private fun showData() {}
 
     private fun getData() {}
+
 
 
     private fun ankoBg() {
