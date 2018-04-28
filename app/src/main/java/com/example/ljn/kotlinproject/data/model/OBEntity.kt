@@ -20,8 +20,8 @@ class OBEntity {
     @Transient
     var level: Int = 0
     //做一对多，多对一的注解
-    /* @Backlink
-     lateinit var product: List<T>*/
+    @Backlink
+    lateinit var product: List<OBEntity2>
 
 
 }

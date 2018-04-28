@@ -7,7 +7,7 @@ import io.objectbox.Box
 import io.objectbox.android.AndroidScheduler
 
 class BaseDao {
-
+//http://objectbox.io/files/objectbox-java/current/io/objectbox/Box.html
     private val box: Box<OBEntity> = App.instance.getBoxStore().boxFor(OBEntity::class.java)
     private val entity = OBEntity()
     //1.
@@ -43,6 +43,8 @@ class BaseDao {
     //1、在你要修改的表添加@Uid注解。  实体类上
     //2.编译
     //3.直接修改
+    //在新增和删除字段的时候，基于NoSql的特性ObjectBox会自动的升级你的数据库。
+    //所以你数据库的实体类不用做任何改动 只需删除或增加类的属性即可
 
     //6.RX监听
 
