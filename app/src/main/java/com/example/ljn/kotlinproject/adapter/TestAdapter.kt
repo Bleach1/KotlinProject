@@ -9,9 +9,11 @@ class TestAdapter(layoutResId: Int, data: List<TestBean>) : BaseQuickAdapter<Tes
     override fun convert(helper: BaseViewHolder?, item: TestBean?) {
         helper?.setText(R.id.tv_name, item?.name)
         helper?.setText(R.id.tv_age, item?.errorMsg)
-        /* with(item) {
 
-         }*/
+        with(item) {
+            helper?.setText(R.id.tv_name, this?.name)
+            helper?.setText(R.id.tv_age, this?.errorMsg)
+        }
     }
 
 }

@@ -62,7 +62,6 @@ class AnkoActivity : AppCompatActivity() {
     private fun getData() {}
 
 
-
     private fun ankoBg() {
         async(UI) {
             val data: Deferred<Data> = bg {

@@ -41,6 +41,68 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
             //传参数+flags
             startActivity(intentFor<AnkoActivity>("id" to 5).singleTop())
         }
+
+        functionTest()
+
     }
+
+    private fun functionTest() {
+        //1.run 仅仅用于执行一个代码块
+        val x = kotlin.run {
+            L.i("Hello world")
+            return@run 1
+        }
+        L.i(x.toString())
+
+//可以用做类型转换
+        val y = "A:B:C:D:E:F".run {
+            substring(2)
+            return@run split(substring(2))
+        }
+
+        L.i(y.toString())
+
+        //2. with 传递的是对象直接操作属性 函数等
+        val a = A()
+        with(a) {
+            sayHello()
+        }
+        //3.apply
+        a.apply {
+            println("This is a block")
+            sayHello()
+        }.other()
+        //4.also 通with
+        //5.let 相当于 RxJava  map 可以转换类型
+        "A:B:C:D:E:F".let {
+            it.substring(5)
+            return@let A()
+        }
+
+        a?.let {
+            //表示object不为null的条件下，才会去执行let函数体
+            it.sayHello()
+        }
+        //6.takeIf 筛选集合中某个数据是否符合要求
+        val arr = listOf(1, 2, 3)
+        arr.forEach {
+            println("$it % 2 == 0 => ${it.takeIf { it % 2 == 0 }}")
+            println("$it % 2 == 0 => ${it.takeUnless { it % 2 == 0 }}")
+        }
+        //7.takeUnless 如果符合条件返回null，不符合条件返回对象本身
+        //8.repeat 将一个动作重复指定的次数
+        repeat(3) {
+            println("Just repeat, index: $it")
+        }
+    }
+
+
+    class A {
+        fun sayHello() {}
+        fun other() {
+            println("Other function...")
+        }
+    }
+
 
 }
