@@ -1,7 +1,7 @@
 package com.example.ljn.kotlinproject.injection.component
 
 import com.example.ljn.kotlinproject.App
-import com.example.ljn.kotlinproject.helper.RealmHelper
+import com.example.ljn.kotlinproject.helper.DBHelper
 import com.example.ljn.kotlinproject.helper.RetrofitHelper
 import com.example.ljn.kotlinproject.injection.module.AppModule
 import com.example.ljn.kotlinproject.injection.module.HttpModule
@@ -16,5 +16,5 @@ interface AppComponent {
 
     fun retrofitHelper(): RetrofitHelper   //提供http的帮助类
 
-    fun realmHelper(): RealmHelper     //提供数据库帮助类
+    fun realmHelper(): DBHelper     //提供数据库帮助类
 }

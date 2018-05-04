@@ -7,7 +7,8 @@ import io.objectbox.Box
 import io.objectbox.android.AndroidScheduler
 
 class BaseDao {
-//http://objectbox.io/files/objectbox-java/current/io/objectbox/Box.html
+    //https://www.aliyun.com/jiaocheng/2492.html?spm=5176.100033.1.20.vDXGOM
+    //http://objectbox.io/files/objectbox-java/current/io/objectbox/Box.html
     private val box: Box<OBEntity> = App.instance.getBoxStore().boxFor(OBEntity::class.java)
     private val entity = OBEntity()
     //1.
@@ -32,7 +33,8 @@ class BaseDao {
                     // adapter
 
                 }
-
+//事物
+        App.instance.getBoxStore().runInReadTx { }
     }
     //4.Transition
     /* runInTx:在给定的runnable 中运行的事务。

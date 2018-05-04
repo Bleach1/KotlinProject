@@ -12,9 +12,9 @@ import com.example.ljn.kotlinproject.mvp.IView
 import javax.inject.Inject
 
 /**
-@ description:  再看 再看 再看就把你喝掉  有点小坑 不大
-@ author:  ljn
-@ time:  2018/1/12
+@description:  再看 再看 再看就把你喝掉  有点小坑 不大
+@author:  ljn
+@time:  2018/1/12
  */
 @Suppress("UNCHECKED_CAST")
 abstract class BaseActivity<in V : IView, T : IPresenter<V>> : AppCompatActivity(), IView {

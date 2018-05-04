@@ -2,7 +2,7 @@ package com.example.ljn.kotlinproject.injection.module
 
 import com.example.ljn.kotlinproject.App
 import com.example.ljn.kotlinproject.data.ApiService
-import com.example.ljn.kotlinproject.helper.RealmHelper
+import com.example.ljn.kotlinproject.helper.DBHelper
 import com.example.ljn.kotlinproject.helper.RetrofitHelper
 import dagger.Module
 import dagger.Provides
@@ -25,7 +25,7 @@ class AppModule(private val application: App) {
 
     @Provides
     @Singleton
-    internal fun provideRealmHelper(): RealmHelper {
-        return RealmHelper(application)
+    internal fun provideRealmHelper(): DBHelper {
+        return DBHelper(application)
     }
 }
