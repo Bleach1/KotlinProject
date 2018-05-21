@@ -13,7 +13,7 @@ import android.widget.Toast
 import java.io.File
 import javax.inject.Inject
 
-class DownloadApkUtil @Inject constructor(context: Context) {
+class DownloadApkUtil constructor(context: Context) {
 
     companion object {
         const val packageName = "com.android.providers.downloads"
@@ -35,7 +35,7 @@ class DownloadApkUtil @Inject constructor(context: Context) {
                         dialog.dismiss()
                         try {
                             val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                            intent.data = Uri.parse("package:" + packageName)
+                            intent.data = Uri.parse("package:$packageName")
                             mContext.startActivity(intent)
                         } catch (e: ActivityNotFoundException) {
                             val intent = Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)

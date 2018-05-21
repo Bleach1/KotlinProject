@@ -11,7 +11,7 @@ import io.rx_cache2.Reply
 
 class RetrofitHelper {
 
-    var apiService: ApiService? = null
+    private  var apiService: ApiService? = null
     var cacheProviders: CacheProviders? = null
 
     constructor(apiService: ApiService) {
@@ -24,11 +24,11 @@ class RetrofitHelper {
     }
 
 
-    fun fetchDailyListInfo2(): Flowable<BaseBean<TestBean>> {
-        return apiService!!.getDailyBeforeList2("")
+    fun fetchDailyListInfo2(): Flowable<BaseBean<TestBean>>? {
+        return apiService?.getDailyBeforeList2("")
     }
 
     fun cache_fetchVersionInfo(cache_info: String, update: Boolean): Flowable<Reply<BaseBean<TestBean>>>? {
-        return cacheProviders?.getfetchVersionInfo(fetchDailyListInfo2(), DynamicKey(cache_info), EvictDynamicKey(update))
+        return fetchDailyListInfo2()?.let { cacheProviders?.getfetchVersionInfo(it, DynamicKey(cache_info), EvictDynamicKey(update)) }
     }
 }

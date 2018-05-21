@@ -99,4 +99,5 @@ dependencies {
     kapt "io.objectbox:objectbox-processor:$objectboxVersion"
     implementation "io.objectbox:objectbox-kotlin:$objectboxVersion"
 
+    implementation "android.arch.work:work-runtime-ktx:1.0.0-alpha01"
 }

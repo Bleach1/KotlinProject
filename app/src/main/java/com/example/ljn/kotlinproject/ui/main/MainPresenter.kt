@@ -11,8 +11,8 @@ class MainPresenter @Inject constructor(private var mRetrofitHelper: RetrofitHel
     override fun getData(str: String) {
 
         val disposableSubscriber = mRetrofitHelper.fetchDailyListInfo2()
-                .compose(RxUtil.handleResult())
-                .subscribeWith(object : DisposableSubscriber<TestBean>() {
+                ?.compose(RxUtil.handleResult())
+                ?.subscribeWith(object : DisposableSubscriber<TestBean>() {
                     override fun onNext(baseBean: TestBean) {
                         mView?.printMsg()
                     }
@@ -25,6 +25,6 @@ class MainPresenter @Inject constructor(private var mRetrofitHelper: RetrofitHel
 
                     }
                 })
-        addSubscribe(disposableSubscriber)
+        disposableSubscriber?.let { addSubscribe(it) }
     }
 }

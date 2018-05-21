@@ -32,7 +32,7 @@ object AppManager {
     /**
      * 毫秒值转换 HH:mm:ss
      */
-    fun Time_Transformation(time: Long): String {
+    fun timeTransformation(time: Long): String {
         val dateFormat = SimpleDateFormat("HH:mm:ss", Locale.CHINA)
         return dateFormat.format(time - TimeZone.getDefault().rawOffset)
     }
@@ -90,10 +90,8 @@ object AppManager {
      * @return 当前应用的版本号
      */
     fun getVersionCode(): Int {
-        var verCode = -1
-        verCode = App.context.packageManager?.getPackageInfo(
-                App.context.packageName, 0)!!.versionCode
-        return verCode
+        return App.context.packageManager?.getPackageInfo(
+                App.context.packageName, 0)?.versionCode ?: -1
     }
 
     /**
@@ -104,10 +102,8 @@ object AppManager {
      * @return
      */
     fun getVerName(): String {
-        var verName = ""
-        verName = App.context.packageManager?.getPackageInfo(
-                App.context.packageName, 0)!!.versionName
-        return verName
+        return App.context.packageManager?.getPackageInfo(
+                App.context.packageName, 0)?.versionName ?: ""
     }
 
     /**
@@ -162,12 +158,12 @@ object AppManager {
                 if (cursor != null && cursor.moveToFirst()) {
                     val columnIndex = cursor.getColumnIndex(filePathColumn[0])
                     filePath = cursor.getString(columnIndex)
-                    Log.d("ljn", "filePath" + filePath)
+                    Log.d("ljn", "filePath$filePath")
                     cursor.close()
                 }
             }
         } else if (TextUtils.equals("file", scheme)) {// 小米云相册处理方式
-            filePath = uri!!.path
+            filePath = uri?.path.toString()
         }
         return filePath
     }
@@ -175,8 +171,8 @@ object AppManager {
     /**
      * 获取url的Host
      */
-    fun getHostName(urlString: String): String {
-        var urlString = urlString
+    fun getHostName(urlStr: String): String {
+        var urlString = urlStr
         var head = ""
         var index = urlString.indexOf("://")
         if (index != -1) {
@@ -260,24 +256,24 @@ object AppManager {
      * drawable to Bitmap
      */
     fun drawable2Bitmap(drawable: Drawable): Bitmap? {
-        if (drawable is BitmapDrawable) {
-            return drawable.bitmap
-        } else if (drawable is NinePatchDrawable) {
-            val bitmap = Bitmap
-                    .createBitmap(
-                            drawable.getIntrinsicWidth(),
-                            drawable.getIntrinsicHeight(),
-                            if (drawable.getOpacity() != PixelFormat.OPAQUE)
-                                Bitmap.Config.ARGB_8888
-                            else
-                                Bitmap.Config.RGB_565)
-            val canvas = Canvas(bitmap)
-            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
-                    drawable.getIntrinsicHeight())
-            drawable.draw(canvas)
-            return bitmap
-        } else {
-            return null
+        when (drawable) {
+            is BitmapDrawable -> return drawable.bitmap
+            is NinePatchDrawable -> {
+                val bitmap = Bitmap
+                        .createBitmap(
+                                drawable.getIntrinsicWidth(),
+                                drawable.getIntrinsicHeight(),
+                                if (drawable.getOpacity() != PixelFormat.OPAQUE)
+                                    Bitmap.Config.ARGB_8888
+                                else
+                                    Bitmap.Config.RGB_565)
+                val canvas = Canvas(bitmap)
+                drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
+                        drawable.getIntrinsicHeight())
+                drawable.draw(canvas)
+                return bitmap
+            }
+            else -> return null
         }
     }
 

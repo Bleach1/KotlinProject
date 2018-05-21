@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".ui.AnkoActivity" />
         <activity android:name=".ui.ConstraintLayoutDSLActivity" />
+        <activity android:name=".ui.TestActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
