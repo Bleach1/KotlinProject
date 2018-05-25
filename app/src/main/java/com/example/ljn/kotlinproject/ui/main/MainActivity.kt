@@ -1,6 +1,8 @@
 package com.example.ljn.kotlinproject.ui.main
 
+import android.content.Intent
 import com.example.ljn.kotlinproject.R
+import com.example.ljn.kotlinproject.R.id.text_ljn
 import com.example.ljn.kotlinproject.base.BaseActivity
 import com.example.ljn.kotlinproject.ui.AnkoActivity
 import com.safframework.log.L
@@ -34,7 +36,7 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
     }
 
     private val list = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-    private val list2 = listOf<Int>(0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 0)
+    private val list2 = listOf(0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 0)
     private val list3 = listOf(0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0, -1)
     override fun initEventAndData() {
         mPresenter?.getData("")
@@ -43,10 +45,10 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
         text_ljn.onClick {
             //传参数+flags
             startActivity(intentFor<AnkoActivity>("id" to 5).singleTop())
+            // startActivity<AnkoActivity>()
         }
 
         functionTest()
-
 
 
         //https://www.jianshu.com/p/8f32de00c5dc
