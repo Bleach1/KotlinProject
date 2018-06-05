@@ -1,8 +1,7 @@
 package com.example.ljn.kotlinproject.base
 
 import com.example.ljn.kotlinproject.App
-import com.example.ljn.kotlinproject.data.model.OBEntity
-import com.example.ljn.kotlinproject.data.model.OBEntity_
+
 import io.objectbox.Box
 import io.objectbox.android.AndroidScheduler
 

@@ -6,8 +6,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.example.ljn.kotlinproject.R
 import com.example.ljn.kotlinproject.adapter.TestAdapter
-import com.example.ljn.kotlinproject.data.model.Data
-import com.example.ljn.kotlinproject.data.model.TestBean
+import com.example.ljn.kotlinproject.base.Data
+import com.example.ljn.kotlinproject.base.TestBean
+
+
 import com.safframework.log.L
 import kotlinx.android.synthetic.main.anko_activity.*
 import kotlinx.coroutines.experimental.Deferred

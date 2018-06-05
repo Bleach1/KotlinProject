@@ -1,9 +1,10 @@
 package com.example.ljn.kotlinproject.helper
 
 import com.example.ljn.kotlinproject.base.BaseBean
+import com.example.ljn.kotlinproject.base.TestBean
 import com.example.ljn.kotlinproject.data.ApiService
 import com.example.ljn.kotlinproject.data.CacheProviders
-import com.example.ljn.kotlinproject.data.model.TestBean
+
 import io.reactivex.Flowable
 import io.rx_cache2.DynamicKey
 import io.rx_cache2.EvictDynamicKey
@@ -11,7 +12,7 @@ import io.rx_cache2.Reply
 
 class RetrofitHelper {
 
-    private  var apiService: ApiService? = null
+    private var apiService: ApiService? = null
     var cacheProviders: CacheProviders? = null
 
     constructor(apiService: ApiService) {
@@ -28,7 +29,7 @@ class RetrofitHelper {
         return apiService?.getDailyBeforeList2("")
     }
 
-    fun cache_fetchVersionInfo(cache_info: String, update: Boolean): Flowable<Reply<BaseBean<TestBean>>>? {
-        return fetchDailyListInfo2()?.let { cacheProviders?.getfetchVersionInfo(it, DynamicKey(cache_info), EvictDynamicKey(update)) }
+    fun cacheVersionInfo(cache_info: String, update: Boolean): Flowable<Reply<BaseBean<TestBean>>>? {
+        return fetchDailyListInfo2()?.let { cacheProviders?.getVersionInfo(it, DynamicKey(cache_info), EvictDynamicKey(update)) }
     }
 }

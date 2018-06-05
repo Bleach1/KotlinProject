@@ -1,7 +1,8 @@
 package com.example.ljn.kotlinproject.ui.main
 
 import com.example.ljn.kotlinproject.base.BasePresenter
-import com.example.ljn.kotlinproject.data.model.TestBean
+import com.example.ljn.kotlinproject.base.TestBean
+
 import com.example.ljn.kotlinproject.helper.RetrofitHelper
 import com.example.ljn.kotlinproject.utils.RxUtil
 import io.reactivex.subscribers.DisposableSubscriber

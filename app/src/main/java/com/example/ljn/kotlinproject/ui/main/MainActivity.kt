@@ -1,9 +1,8 @@
 package com.example.ljn.kotlinproject.ui.main
 
-import android.content.Intent
 import com.example.ljn.kotlinproject.R
-import com.example.ljn.kotlinproject.R.id.text_ljn
 import com.example.ljn.kotlinproject.base.BaseActivity
+
 import com.example.ljn.kotlinproject.ui.AnkoActivity
 import com.safframework.log.L
 import kotlinx.android.synthetic.main.activity_main.*
@@ -38,6 +37,9 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
     private val list = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
     private val list2 = listOf(0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 0)
     private val list3 = listOf(0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0, -1)
+    private val list4 = listOf(0, 1, 2, 3, 4, 5)
+    private val list5 = listOf(4, 5, 2, 1, 5)
+
     override fun initEventAndData() {
         mPresenter?.getData("")
         text_ljn.text = msg
@@ -49,10 +51,12 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
         }
 
         functionTest()
+        //collectionUse()
+    }
 
-
+    private fun collectionUse() {
         //https://www.jianshu.com/p/8f32de00c5dc
-//总数操作符
+        //总数操作符
         //any 只要有一个符合就返回true
         val any = list.any { it > 8 }
         L.i(any.toString())
@@ -344,10 +348,10 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
          */
         val zip2 = list4.zip(list5) { it1, it2 -> it1 + it2 }
 
-//[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5)]
+        //[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5)]
         val zip4 = list4.zip(list4 + list5)
 
-//[0, 2, 4, 6, 8, 10]
+        //[0, 2, 4, 6, 8, 10]
         val zip3 = list4.zip(list4 + list5) { it1, it2 -> it1 + it2 }
 
         /**
@@ -375,7 +379,7 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
          */
         val plus = list4.plus(list2)
 
-// 顺序操作符
+        // 顺序操作符
 
         /**
          * 返回一个与指定list相反顺序的list
@@ -406,11 +410,9 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
          * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
          */
         val sortDescendingBy = list.sortedByDescending { it > 4 }
-
     }
 
-    private val list4 = listOf(0, 1, 2, 3, 4, 5)
-    private val list5 = listOf(4, 5, 2, 1, 5)
+
     private fun functionTest() {
         //1.run 仅仅用于执行一个代码块
         val x = kotlin.run {
@@ -468,6 +470,5 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
             println("Other function...")
         }
     }
-
 
 }

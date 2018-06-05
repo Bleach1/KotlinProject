@@ -3,7 +3,8 @@ package com.example.ljn.kotlinproject
 import android.app.Activity
 import android.content.Context
 import android.support.multidex.MultiDexApplication
-import com.example.ljn.kotlinproject.data.model.MyObjectBox
+import com.example.ljn.kotlinproject.base.MyObjectBox
+
 import com.example.ljn.kotlinproject.injection.component.AppComponent
 import com.example.ljn.kotlinproject.injection.component.DaggerAppComponent
 import com.example.ljn.kotlinproject.injection.module.AppModule
