@@ -5,11 +5,11 @@ apply plugin: 'realm-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'io.objectbox'
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.ljn.kotlinproject"
         minSdkVersion 19
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -91,6 +91,7 @@ dependencies {
     implementation 'jp.wasabeef:glide-transformations:3.0.1'
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'com.tencent.bugly:crashreport:2.6.6.1'
+    //noinspection GradleCompatible
     implementation 'com.android.support:design:27.1.1'
 //Kotlin扩展库
     implementation 'androidx.core:core-ktx:0.3'

@@ -54,7 +54,8 @@ class App : MultiDexApplication() {
 
     fun exitApp() {
         synchronized(activityList) {
-            activityList.filter { activity -> !activity.isFinishing }.forEach { act -> act.finish() }
+            activityList.filter { activity -> !activity.isFinishing }
+                    .forEach { act -> act.finish() }
         }
         android.os.Process.killProcess(android.os.Process.myPid())
         System.exit(0)

@@ -11,7 +11,6 @@ import android.provider.Settings
 import android.support.v4.content.FileProvider
 import android.widget.Toast
 import java.io.File
-import javax.inject.Inject
 
 class DownloadApkUtil constructor(context: Context) {
 
@@ -73,32 +72,34 @@ class DownloadApkUtil constructor(context: Context) {
         val query = DownloadManager.Query()
         query.setFilterById(downLoadId)
         val cursor = mDownloadManager?.query(query)
-        if (cursor!!.moveToFirst()) {
-            val status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
-            when (status) {
-            //下载暂停
-                DownloadManager.STATUS_PAUSED -> {
+        cursor?.let {
+            if (it.moveToFirst()) {
+                val status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
+                when (status) {
+                //下载暂停
+                    DownloadManager.STATUS_PAUSED -> {
+                    }
+                //下载延迟
+                    DownloadManager.STATUS_PENDING -> {
+                    }
+                //正在下载
+                    DownloadManager.STATUS_RUNNING -> {
+                    }
+                //下载完成
+                    DownloadManager.STATUS_SUCCESSFUL -> installAPK()
+                //下载失败
+                    DownloadManager.STATUS_FAILED -> Toast.makeText(mContext, "下载失败", Toast.LENGTH_SHORT).show()
                 }
-            //下载延迟
-                DownloadManager.STATUS_PENDING -> {
-                }
-            //正在下载
-                DownloadManager.STATUS_RUNNING -> {
-                }
-            //下载完成
-                DownloadManager.STATUS_SUCCESSFUL -> installAPK()
-            //下载失败
-                DownloadManager.STATUS_FAILED -> Toast.makeText(mContext, "下载失败", Toast.LENGTH_SHORT).show()
             }
         }
-        cursor.close()
+        cursor?.close()
     }
 
     private fun installAPK() {
         val apkFile = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), apkName)
         val intent = Intent(Intent.ACTION_VIEW)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             val apkUri = FileProvider.getUriForFile(mContext, mContext.packageName + ".provider", apkFile)
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             intent.setDataAndType(apkUri, "application/vnd.android.package-archive")
