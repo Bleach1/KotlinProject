@@ -11,6 +11,7 @@ import com.example.ljn.kotlinproject.injection.module.AppModule
 import com.example.ljn.kotlinproject.injection.module.HttpModule
 import com.example.ljn.kotlinproject.service.InitializeService
 import io.objectbox.BoxStore
+import io.objectbox.android.AndroidObjectBrowser
 import java.util.*
 import kotlin.properties.Delegates
 

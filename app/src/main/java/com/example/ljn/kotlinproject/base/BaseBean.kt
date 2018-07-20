@@ -7,6 +7,19 @@ data class BaseBean<T>(var code: Int = 0, var msg: String, var data: T)
 data class Data(var id: Int)
 data class TestBean(var errorMsg: String, var name: String, var age: Int)
 
+open class Person(name: String?) {
+    constructor() : this(null) {
+//二级构造方法需要调用一级
+    }
+
+    var age: Int = 0
+        get() = field
+        set(value) {
+            field = value
+        }
+}
+
+
 @Entity
 //@Uid
 class OBEntity {

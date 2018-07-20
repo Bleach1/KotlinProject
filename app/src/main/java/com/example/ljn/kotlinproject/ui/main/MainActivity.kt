@@ -1,5 +1,6 @@
 package com.example.ljn.kotlinproject.ui.main
 
+import com.example.ljn.kotlinproject.App
 import com.example.ljn.kotlinproject.R
 import com.example.ljn.kotlinproject.base.BaseActivity
 
