@@ -1,9 +1,7 @@
 package com.example.ljn.kotlinproject.ui.main
 
-import com.example.ljn.kotlinproject.App
 import com.example.ljn.kotlinproject.R
 import com.example.ljn.kotlinproject.base.BaseActivity
-
 import com.example.ljn.kotlinproject.ui.AnkoActivity
 import com.safframework.log.L
 import kotlinx.android.synthetic.main.activity_main.*
@@ -40,7 +38,6 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
     private val list3 = listOf(0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0, -1)
     private val list4 = listOf(0, 1, 2, 3, 4, 5)
     private val list5 = listOf(4, 5, 2, 1, 5)
-
     override fun initEventAndData() {
         mPresenter?.getData("")
         text_ljn.text = msg
@@ -472,4 +469,12 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
         }
     }
 
+    /**
+     * 定义二元元祖  三元元祖 triple
+     */
+    private fun pair() {
+        val pair = Pair("ljn", 30)
+        val pair2 = "ljn" to 27
+        print(pair.first + pair.second)
+    }
 }

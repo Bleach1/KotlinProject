@@ -30,7 +30,7 @@ class DownloadApkUtil constructor(context: Context) {
             val builder = AlertDialog.Builder(mContext)
                     .setTitle("温馨提示")
                     .setMessage("系统下载管理器被禁止，需手动打开")
-                    .setPositiveButton("确定", { dialog, _ ->
+                    .setPositiveButton("确定") { dialog, _ ->
                         dialog.dismiss()
                         try {
                             val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
@@ -40,8 +40,8 @@ class DownloadApkUtil constructor(context: Context) {
                             val intent = Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)
                             mContext.startActivity(intent)
                         }
-                    })
-                    .setNegativeButton("取消", { dialog, _ -> dialog.dismiss() })
+                    }
+                    .setNegativeButton("取消") { dialog, _ -> dialog.dismiss() }
             builder.create().show()
         } else {
             //正常下载流程
