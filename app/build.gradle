@@ -100,7 +100,7 @@ dependencies {
     kapt "io.objectbox:objectbox-processor:$objectboxVersion"
     implementation "io.objectbox:objectbox-kotlin:$objectboxVersion"
 
-    implementation "android.arch.work:work-runtime-ktx:1.0.0-alpha04"
+    implementation "android.arch.work:work-runtime-ktx:1.0.0-alpha05"
 
     implementation "android.arch.navigation:navigation-fragment:1.0.0-alpha04"
     implementation "android.arch.navigation:navigation-ui:1.0.0-alpha04"

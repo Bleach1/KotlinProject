@@ -39,6 +39,15 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
     private val list4 = listOf(0, 1, 2, 3, 4, 5)
     private val list5 = listOf(4, 5, 2, 1, 5)
     override fun initEventAndData() {
+
+        //区间的定义
+        val range = 1..100
+        val range2 = IntRange(1, 100)
+        val range3 = 1.rangeTo(100)
+
+
+
+
         mPresenter?.getData("")
         text_ljn.text = msg
         //点击事件
