@@ -2,8 +2,10 @@ package com.example.ljn.kotlinproject.ui.main
 
 import com.example.ljn.kotlinproject.R
 import com.example.ljn.kotlinproject.base.BaseActivity
+import com.example.ljn.kotlinproject.base.BaseBean
 import com.example.ljn.kotlinproject.ui.AnkoActivity
 import com.safframework.log.L
+import io.objectbox.internal.JniTest
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.sdk25.coroutines.onClick
@@ -45,9 +47,9 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
         val range2 = IntRange(1, 100)
         val range3 = 1.rangeTo(100)
 
-
-
-
+        val add: (Int, Int) -> Int = { a, b -> a + b }
+        add(1, 2)
+        add.invoke(1, 2)
         mPresenter?.getData("")
         text_ljn.text = msg
         //点击事件
@@ -485,5 +487,36 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
         val pair = Pair("ljn", 30)
         val pair2 = "ljn" to 27
         print(pair.first + pair.second)
+    }
+
+    /**
+     * 递归
+     */
+    private fun sum(n: Int): Int {
+        return if (n == 1) {
+            1
+        } else {
+            n + sum(n - 1)//做了+n操作 不是尾递归
+        }
+    }
+
+    /**
+     * 尾递归优化 原理:转化为迭代
+     */
+    private tailrec fun tailSum(n: Int, result: Int = 0): Int {
+        return if (n == 1) {
+            result + 1
+        } else {
+            tailSum(n - 1, result + n)
+        }
+    }
+
+
+    /**
+     * 解决泛型擦除
+     */
+
+    private inline fun <reified T> parseType(t: T) {
+        T::class.java
     }
 }

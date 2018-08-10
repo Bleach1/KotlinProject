@@ -3,12 +3,19 @@ package com.example.ljn.kotlinproject.base
 import io.objectbox.annotation.*
 import io.objectbox.relation.ToOne
 
-data class BaseBean<T>(var code: Int = 0, var msg: String, var data: T)
+data class BaseBean<T>(var code: Int, var msg: String, var data: T)
 data class Data(var id: Int)
+
 data class TestBean(var errorMsg: String, var name: String, var age: Int)
+class Girl {
+    //运算符重载  girl1 + girl2   返回值为第一个值
+    operator fun plus(girl: Girl): Girl {
+        return this
+    }
+}
 
 open class Person(name: String?) {
-    constructor() : this(null) {
+    constructor() : this(name = null) {
 //二级构造方法需要调用一级
     }
 
