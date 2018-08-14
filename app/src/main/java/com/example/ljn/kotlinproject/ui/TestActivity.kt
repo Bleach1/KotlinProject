@@ -11,8 +11,10 @@ import kotlinx.coroutines.experimental.runBlocking
 @Suppress("EXPERIMENTAL_FEATURE_WARNING")
 class TestActivity : AppCompatActivity() {
 
-
+    //知道具体值 用的时候在加载 val
     private val name by lazy { "" }
+    //不知道具体值 后面再复制 var
+    private lateinit var name2: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,5 +99,36 @@ class TestActivity : AppCompatActivity() {
         println("Hello")
     }
 
+    /**
+     * 一个函数返回了一个内部函数，该内部函数引用了外部函数的相关参数和变量
+     * 该返回的内部函数成为闭包
+     * kotlin--lambda表达式
+     */
+    private fun box(): () -> Unit {
+        var a = 10
+        return {
+            print(a)
+            a++
+        }
+    }
 
+
+    /**
+     * 高阶函数--函数传递函数参数
+     * a,b传递的参数
+     * block传递的工具
+     */
+
+    private fun tools(a: Int, b: Int, block: (Int, Int) -> Int): Int {
+        return block(a, b)
+    }
+
+
+    fun add(a: Int, b: Int): Int {
+        return a + b
+    }
+
+    //::函数的引用
+    var sum = tools(10, 10, ::add)
+    var sum2 = tools(10, 10) { m, n -> m + n }
 }
