@@ -78,7 +78,7 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
         //none 如果没有任何元素与给定的函数匹配，则返回true
         val none = list.none { it > 10 }
         L.i(none.toString())
-
+        /***********************************我是分割线*********************************************************/
         //fold 在一个初始值的基础上 从第一项到最后一项通过 一个函数操作所有的元素。
         //下面是初始值4 每项进行累加 4+0.....9
         val fold = list.fold(4) { total, next -> total + next }

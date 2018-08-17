@@ -13,7 +13,7 @@ class TestActivity : AppCompatActivity() {
 
     //知道具体值 用的时候在加载 val
     private val name by lazy { "" }
-    //不知道具体值 后面再复制 var
+    //不知道具体值 后面再赋值 var
     private lateinit var name2: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,7 @@ class TestActivity : AppCompatActivity() {
      * 20170206-063015.015 [main] Hello,
      * 20170206-063016.016 [ForkJoinPool.commonPool-worker-1] World!
      */
-    fun main(args: Array<String>) {
+    private fun main(args: Array<String>) {
         launch(CommonPool) {
             // create new coroutine in common thread pool
             delay(1000L) // non-blocking delay for 1 second (default time unit is ms)

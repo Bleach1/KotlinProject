@@ -13,7 +13,7 @@ import io.rx_cache2.Reply
 class RetrofitHelper {
 
     private var apiService: ApiService? = null
-    var cacheProviders: CacheProviders? = null
+    private var cacheProviders: CacheProviders? = null
 
     constructor(apiService: ApiService) {
         this.apiService = apiService
