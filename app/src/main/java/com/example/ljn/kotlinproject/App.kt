@@ -1,21 +1,20 @@
 package com.example.ljn.kotlinproject
 
 import android.app.Activity
+import android.app.Application
 import android.content.Context
-import android.support.multidex.MultiDexApplication
+import android.support.multidex.MultiDex
 import com.example.ljn.kotlinproject.base.MyObjectBox
-
 import com.example.ljn.kotlinproject.injection.component.AppComponent
 import com.example.ljn.kotlinproject.injection.component.DaggerAppComponent
 import com.example.ljn.kotlinproject.injection.module.AppModule
 import com.example.ljn.kotlinproject.injection.module.HttpModule
 import com.example.ljn.kotlinproject.service.InitializeService
 import io.objectbox.BoxStore
-import io.objectbox.android.AndroidObjectBrowser
 import java.util.*
 import kotlin.properties.Delegates
 
-class App : MultiDexApplication() {
+class App : Application() {
 
     private val activityList = LinkedList<Activity>()
     private lateinit var build: BoxStore
@@ -25,6 +24,11 @@ class App : MultiDexApplication() {
         instance = this
         InitializeService.start(this)
         build = MyObjectBox.builder().androidContext(this).build()
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 
     fun getBoxStore(): BoxStore {

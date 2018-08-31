@@ -3,10 +3,12 @@ package com.example.ljn.kotlinproject.ui.main
 import com.example.ljn.kotlinproject.R
 import com.example.ljn.kotlinproject.base.BaseActivity
 import com.example.ljn.kotlinproject.base.BaseBean
+import com.example.ljn.kotlinproject.base.Bleach
 import com.example.ljn.kotlinproject.ui.AnkoActivity
 import com.safframework.log.L
 import io.objectbox.internal.JniTest
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.serialization.json.JSON
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.singleTop
@@ -41,6 +43,9 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
     private val list4 = listOf(0, 1, 2, 3, 4, 5)
     private val list5 = listOf(4, 5, 2, 1, 5)
     override fun initEventAndData() {
+//数字分组
+        var num = 1000_000_000
+
 
         //区间的定义
         val range = 1..100
@@ -58,7 +63,7 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
             startActivity(intentFor<AnkoActivity>("id" to 5).singleTop())
             // startActivity<AnkoActivity>()
         }
-
+        L.i("""${'$'}9.99""")//$9.99
         functionTest()
         //collectionUse()
     }

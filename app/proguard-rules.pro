@@ -19,3 +19,17 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-dontwarn kotlin.**
+-assumenosideeffects class kotlin.jvm.internal.Intrinsics{
+ static void checkParameterIsNotNull(java.lang.Object,java.lang.String);
+}
+
+-keepattributes *Annotation*, InnerClasses
+-dontnote kotlinx.serialization.SerializationKt
+-keep,includedescriptorclasses class com.yourcompany.yourpackage.**$$serializer { *; } # <-- change package name to your app's
+-keepclassmembers class com.yourcompany.yourpackage.** { # <-- change package name to your app's
+    *** Companion;
+}
+-keepclasseswithmembers class com.yourcompany.yourpackage.** { # <-- change package name to your app's
+    kotlinx.serialization.KSerializer serializer(...);
+}

@@ -2,6 +2,8 @@ package com.example.ljn.kotlinproject.base
 
 import io.objectbox.annotation.*
 import io.objectbox.relation.ToOne
+import kotlinx.serialization.Optional
+import kotlinx.serialization.Serializable
 
 data class BaseBean<T>(var code: Int, var msg: String, var data: T)
 data class Data(var id: Int)
@@ -62,3 +64,16 @@ class OBEntity2 {
     var id: Long = 0
     lateinit var customer: ToOne<OBEntity>
 }
+
+
+//Kotlin serialization
+
+@Serializable
+data class Bleach(val a: Int, @Optional val b: String = "42")
+
+
+@Serializable
+data class Piece<T>(var t: T)
+
+
+

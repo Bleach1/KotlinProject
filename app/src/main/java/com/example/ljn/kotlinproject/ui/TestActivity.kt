@@ -19,11 +19,12 @@ class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        print(::name2.isInitialized)
     }
 
     /**
-     * launch 方法启动了一个协程，CommonPool 是一个有线程池的上下文，
+     * 块注释可以嵌套--------嗯嗯
+     * /*launch 方法启动了一个协程，CommonPool 是一个有线程池的上下文，*/
      * 它可以负责把协程的执行分配到合适的线程上。所以从线程的角度来看，
      * 打印的这两句是在不同的线程上的。
      * 20170206-063015.015 [main] Hello,
@@ -40,7 +41,7 @@ class TestActivity : AppCompatActivity() {
     }
 
     //创建的协程会直接运行在当前线程上
-    fun main1(args: Array<String>) = runBlocking<Unit> {
+    fun main1(args: Array<String>) = runBlocking {
         launch(CommonPool) {
             delay(1000L)
             println("World!")
@@ -50,7 +51,7 @@ class TestActivity : AppCompatActivity() {
     }
 
     // defer 来替换你的 launch 携带返回值
-    fun main2(args: Array<String>) = runBlocking<Unit> {
+    fun main2(args: Array<String>) = runBlocking {
         val job = launch(CommonPool) {
             delay(1000L)
             println("World!")
@@ -131,4 +132,5 @@ class TestActivity : AppCompatActivity() {
     //::函数的引用
     var sum = tools(10, 10, ::add)
     var sum2 = tools(10, 10) { m, n -> m + n }
+
 }
