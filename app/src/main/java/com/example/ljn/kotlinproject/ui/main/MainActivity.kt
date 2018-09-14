@@ -43,6 +43,11 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
     private val list4 = listOf(0, 1, 2, 3, 4, 5)
     private val list5 = listOf(4, 5, 2, 1, 5)
     override fun initEventAndData() {
+
+        val url = "http://192.168.3.166:8080/upload/topic/20180907/7785743.jpg"
+        L.i(url.substring(url.lastIndexOf("/") + 1))
+
+
 //数字分组
         var num = 1000_000_000
 

@@ -3,18 +3,20 @@ package com.example.ljn.kotlinproject.ui
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.ljn.kotlinproject.R
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.experimental.*
+import kotlin.properties.Delegates
 
 @Suppress("EXPERIMENTAL_FEATURE_WARNING")
 class TestActivity : AppCompatActivity() {
 
-    //知道具体值 用的时候在加载 val
-    private val name by lazy { "" }
+    //知道具体值 用的时候在加载 val (LazyThreadSafetyMode.NONE)单线程 访问速度更快
+    private val name by lazy(LazyThreadSafetyMode.NONE) { "" }
     //不知道具体值 后面再赋值 var
     private lateinit var name2: String
+
+    private var gender: String by Delegates.observable("Female") { property, oldValue, newValue ->
+        println("$oldValue---$newValue")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +54,13 @@ class TestActivity : AppCompatActivity() {
 
     // defer 来替换你的 launch 携带返回值
     fun main2(args: Array<String>) = runBlocking {
+
+        val ctx = newSingleThreadContext("CTX")
+        //取消并发
+        val job2= launch(ctx) {
+
+        }
+
         val job = launch(CommonPool) {
             delay(1000L)
             println("World!")
@@ -64,6 +73,11 @@ class TestActivity : AppCompatActivity() {
         val cancel = job.cancel()
         //job.cancel(IllegalAccessException("World!"))
         if (isActive) println("协程存活")
+
+
+
+
+
     }
 
 
@@ -132,5 +146,20 @@ class TestActivity : AppCompatActivity() {
     //::函数的引用
     var sum = tools(10, 10, ::add)
     var sum2 = tools(10, 10) { m, n -> m + n }
+
+
+    class User(map: Map<String, Any>) {
+        val name: String by map
+        val age: Int by map
+    }
+
+
+    val user = User(mapOf("name" to "LJN", "age" to 27))
+
+    fun print() {
+        //自动赋值
+        println("${user.name}--${user.age}")
+    }
+
 
 }
