@@ -2,6 +2,7 @@ package com.example.ljn.kotlinproject.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.SparseArray
 import com.example.ljn.kotlinproject.R
 import kotlinx.coroutines.experimental.*
 import kotlin.properties.Delegates
@@ -13,9 +14,9 @@ class TestActivity : AppCompatActivity() {
     private val name by lazy(LazyThreadSafetyMode.NONE) { "" }
     //不知道具体值 后面再赋值 var
     private lateinit var name2: String
-
     private var gender: String by Delegates.observable("Female") { property, oldValue, newValue ->
         println("$oldValue---$newValue")
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +58,7 @@ class TestActivity : AppCompatActivity() {
 
         val ctx = newSingleThreadContext("CTX")
         //取消并发
-        val job2= launch(ctx) {
+        val job2 = launch(ctx) {
 
         }
 
@@ -73,9 +74,6 @@ class TestActivity : AppCompatActivity() {
         val cancel = job.cancel()
         //job.cancel(IllegalAccessException("World!"))
         if (isActive) println("协程存活")
-
-
-
 
 
     }

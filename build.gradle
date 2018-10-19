@@ -11,6 +11,9 @@ buildscript {
         mavenCentral()
         maven { url "https://jitpack.io" }
         maven { url "https://kotlin.bintray.com/kotlinx" }
+        maven {
+            url "https://repo.eclipse.org/content/repositories/paho-snapshots/"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'

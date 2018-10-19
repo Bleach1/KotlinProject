@@ -108,7 +108,16 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
-
+//Kodenin
+    // 基础组件
+    implementation 'org.kodein.di:kodein-di-generic-jvm:5.2.0'
+// Android扩展组件
+    implementation 'org.kodein.di:kodein-di-framework-android-core:5.2.0'
+// support扩展组件，我的项目中用到了v4包的Fragment，因此我需要它
+    implementation 'org.kodein.di:kodein-di-framework-android-support:5.2.0'
+    //MQTT
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1'
+    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
 }
 kotlin {
     experimental {

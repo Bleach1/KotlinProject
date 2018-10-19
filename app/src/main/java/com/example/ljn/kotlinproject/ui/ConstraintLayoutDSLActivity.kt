@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.support.constraint.ConstraintSet.MATCH_CONSTRAINT_WRAP
 import android.support.constraint.ConstraintSet.PARENT_ID
 import android.support.v7.app.AppCompatActivity
+import android.widget.SeekBar
 import com.example.ljn.kotlinproject.R
+import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.ConstraintSetBuilder.Side
 import org.jetbrains.anko.constraint.layout.applyConstraintSet
 import org.jetbrains.anko.constraint.layout.constraintLayout
-import org.jetbrains.anko.dip
-import org.jetbrains.anko.textColor
-import org.jetbrains.anko.textView
-import org.jetbrains.anko.wrapContent
 
 class ConstraintLayoutDSLActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,20 +21,20 @@ class ConstraintLayoutDSLActivity : AppCompatActivity() {
                 id = R.id.session_start
                 textSize = 18f
                 textColor = R.attr.colorAccent
-                text="开始"
+                text = "开始"
             }
 
             val sessionTitle = textView {
                 id = R.id.session_title
                 textSize = 18f
                 textColor = Color.BLACK
-                text="开始"
+                text = "开始"
             }.lparams(0, wrapContent)
 
             textView {
                 id = R.id.session_details
                 textSize = 16f
-                text="开始"
+                text = "开始"
             }.lparams(0, wrapContent)
 
             applyConstraintSet {
@@ -73,6 +71,8 @@ class ConstraintLayoutDSLActivity : AppCompatActivity() {
                     defaultWidth = MATCH_CONSTRAINT_WRAP
                 }
             }
+
+
         })
     }
 }

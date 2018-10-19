@@ -7,7 +7,6 @@ import kotlinx.serialization.Serializable
 
 data class BaseBean<T>(var code: Int, var msg: String, var data: T)
 data class Data(var id: Int)
-
 data class TestBean(var errorMsg: String, var name: String, var age: Int)
 class Girl {
     //运算符重载  girl1 + girl2   返回值为第一个值

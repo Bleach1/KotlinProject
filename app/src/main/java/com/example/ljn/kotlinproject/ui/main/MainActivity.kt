@@ -1,17 +1,20 @@
 package com.example.ljn.kotlinproject.ui.main
 
+import android.widget.SeekBar
 import com.example.ljn.kotlinproject.R
 import com.example.ljn.kotlinproject.base.BaseActivity
-import com.example.ljn.kotlinproject.base.BaseBean
-import com.example.ljn.kotlinproject.base.Bleach
+import com.example.ljn.kotlinproject.extensions.log
 import com.example.ljn.kotlinproject.ui.AnkoActivity
 import com.safframework.log.L
-import io.objectbox.internal.JniTest
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.serialization.json.JSON
+import org.eclipse.paho.android.service.MqttAndroidClient
+import org.eclipse.paho.client.mqttv3.*
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk25.coroutines.onSeekBarChangeListener
 import org.jetbrains.anko.singleTop
+import java.lang.reflect.ParameterizedType
 
 @Suppress("EXPERIMENTAL_FEATURE_WARNING")
 class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContract.View {
@@ -42,15 +45,19 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
     private val list3 = listOf(0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0, -1)
     private val list4 = listOf(0, 1, 2, 3, 4, 5)
     private val list5 = listOf(4, 5, 2, 1, 5)
+    private val seekBar1: SeekBar
+        get() {
+            val seekBar = SeekBar(this)
+            return seekBar
+        }
+
     override fun initEventAndData() {
 
+        initMQTT()
         val url = "http://192.168.3.166:8080/upload/topic/20180907/7785743.jpg"
         L.i(url.substring(url.lastIndexOf("/") + 1))
-
-
 //数字分组
         var num = 1000_000_000
-
 
         //区间的定义
         val range = 1..100
@@ -71,6 +78,39 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
         L.i("""${'$'}9.99""")//$9.99
         functionTest()
         //collectionUse()
+    }
+
+    private fun initMQTT() {
+        val options = MqttConnectOptions()
+        options.isCleanSession = false
+        options.connectionTimeout = 10
+        options.keepAliveInterval = 60
+        val client = MqttAndroidClient(this, "tcp://139.198.188.244:1883", "01000013")
+        client.setCallback(object : MqttCallback {
+            override fun messageArrived(topic: String?, message: MqttMessage?) {
+                L.d(message?.toString())
+            }
+
+            override fun connectionLost(cause: Throwable?) {
+                L.d(cause.toString())
+            }
+
+            override fun deliveryComplete(token: IMqttDeliveryToken?) {
+                L.d(token.toString())
+            }
+
+        })
+        client.connect(options, null, object : IMqttActionListener {
+            override fun onSuccess(asyncActionToken: IMqttToken?) {
+                L.d(asyncActionToken.toString())
+                //报警消息
+                client.subscribe("/jiadean/msg", 1)
+            }
+
+            override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
+                L.d(exception.toString())
+            }
+        })
     }
 
     private fun collectionUse() {
@@ -101,6 +141,7 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
         //reduceRight 是从后到前
         val reduce = list.reduce { acc, i -> acc + i }
         L.i(reduce.toString())
+
         //forEach 遍历每个元素并且进行操作
         val foreach = list.forEach { println(it) }
         //forEachIndexed 与foreach相同，但是可以得到index
@@ -530,3 +571,5 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
         T::class.java
     }
 }
+
+
