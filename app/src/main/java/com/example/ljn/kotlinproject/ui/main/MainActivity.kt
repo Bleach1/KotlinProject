@@ -3,18 +3,14 @@ package com.example.ljn.kotlinproject.ui.main
 import android.widget.SeekBar
 import com.example.ljn.kotlinproject.R
 import com.example.ljn.kotlinproject.base.BaseActivity
-import com.example.ljn.kotlinproject.extensions.log
 import com.example.ljn.kotlinproject.ui.AnkoActivity
 import com.safframework.log.L
 import kotlinx.android.synthetic.main.activity_main.*
 import org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.*
-import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.sdk25.coroutines.onClick
-import org.jetbrains.anko.sdk25.coroutines.onSeekBarChangeListener
 import org.jetbrains.anko.singleTop
-import java.lang.reflect.ParameterizedType
 
 @Suppress("EXPERIMENTAL_FEATURE_WARNING")
 class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContract.View {
@@ -47,8 +43,7 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
     private val list5 = listOf(4, 5, 2, 1, 5)
     private val seekBar1: SeekBar
         get() {
-            val seekBar = SeekBar(this)
-            return seekBar
+            return SeekBar(this)
         }
 
     override fun initEventAndData() {

@@ -36,6 +36,7 @@ class App : Application() {
     }
 
     companion object {
+
         var context: Context by Delegates.notNull()
             private set
         var instance: App by Delegates.notNull()
