@@ -12,7 +12,7 @@ class TestActivity : AppCompatActivity() {
 
     //知道具体值 用的时候在加载 val (LazyThreadSafetyMode.NONE)单线程 访问速度更快
     private val name by lazy(LazyThreadSafetyMode.NONE) { "" }
-    //不知道具体值 后面再赋值 var
+    //不知道具体值 后面再赋值 var 不能使用基本数据类型
     private lateinit var name2: String
     private var gender: String by Delegates.observable("Female") { property, oldValue, newValue ->
         println("$oldValue---$newValue")

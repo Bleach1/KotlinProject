@@ -49,5 +49,13 @@ class BaseDao {
 
     //6.RX监听
 
+    //类似模糊查询
+    // 7.isNull() and notNull(),
+    //
+    //between() to filter for values that are between the given two,
+    //
+    //in() and notIn() to filter for values that match any in the given array,
+    //
+    //startsWith(), endsWith() and contains() for extended String filtering.
 
 }
